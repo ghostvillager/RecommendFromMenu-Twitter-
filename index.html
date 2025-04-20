@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Twitter Bookmark Viewer</title>
+  <style>
+    body { font-family: sans-serif; background: #f2f2f2; padding: 20px; }
+    .tweet-container { margin: 10px 0; padding: 10px; background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+  </style>
+</head>
+<body>
+  <h2>お気に入りツイート一覧</h2>
+  <div id="tweet-list">
+    <!-- ツイート埋め込みが入る -->
+  </div>
+
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <script>
+    const tweetUrls = [
+      'https://twitter.com/TwitterJP/status/1640963925512945664',
+      'https://twitter.com/elonmusk/status/1599662192129320961'
+    ];
+
+    const container = document.getElementById('tweet-list');
+    tweetUrls.forEach(url => {
+      const block = document.createElement('div');
+      block.className = 'tweet-container';
+      twttr.widgets.createTweetEmbed(
+        url.split('/').pop(), block, { conversation: 'none' }
+      );
+      container.appendChild(block);
+    });
+  </script>
+</body>
+</html>
